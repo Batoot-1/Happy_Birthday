@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎀 Bata birthday 🎀</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ff69b4;
+            --secondary-color: #ffb6c1;
+            --accent-color: #ffd1dc;
+            --text-color: #8b008b;
+            --bg-color: #fff0f5;
+            --cake-color: #f8c8dc;
+            --cake-top: #ffccf9;
+            --candle-color: #ff9a8b;
+            --heart-color: #ff1493;
+        }
+
+        body {
+            font-family: 'Cairo', 'Amiri', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(#ffb6c1 1px, transparent 1px),
+                radial-gradient(#ffd1dc 1px, transparent 1px);
+            background-size: 30px 30px, 60px 60px;
+            background-position: 0 0, 15px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 1s ease;
+        }
+
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 100%);
+            z-index: 1000;
+            transition: opacity 1.5s ease, visibility 1.5s ease;
+        }
+
+        .intro-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .intro-title {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-shadow: 5px 5px 0px rgba(255, 182, 193, 0.5);
+            position: relative;
+            text-align: center;
+        }
+
+        .intro-title:before {
+            content: '🎀';
+            position: absolute;
+            right: -50px;
+            top: -10px;
+            font-size: 3rem;
+        }
+
+        .intro-title:after {
+            content: '🎀';
+            position: absolute;
+            left: -50px;
+            top: -10px;
+            font-size: 3rem;
+        }
+
+        .start-button {
+            background: linear-gradient(145deg, var(--primary-color), #ff85a2);
+            color: white;
+            border: none;
+            padding: 25px 70px;
+            font-size: 2.2rem;
+            border-radius: 60px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 15px 35px rgba(255, 105, 180, 0.4),
+                inset 0 3px 10px rgba(255, 255, 255, 0.5),
+                inset 0 -3px 10px rgba(190, 70, 130, 0.3);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(255, 105, 180, 0.5),
+                inset 0 3px 10px rgba(255, 255, 255, 0.6),
+                inset 0 -3px 10px rgba(190, 70, 130, 0.4);
+        }
+
+        .start-button:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 
+                0 10px 20px rgba(255, 105, 180, 0.4),
+                inset 0 3px 10px rgba(255, 255, 255, 0.5),
+                inset 0 -3px 10px rgba(190, 70, 130, 0.3);
+        }
+
+        .start-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .start-button:hover:before {
+            transform: translateX(100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .container.active {
+            opacity: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 4.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 0px rgba(255, 182, 193, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+
+        .title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            border-radius: 10px;
+        }
+
+        .birthday-girl {
+            color: #d40078;
+            font-weight: 800;
+            text-shadow: 2px 2px 0px rgba(255, 182, 193, 0.7);
+        }
+
+        .intro-message {
+            font-size: 1.8rem;
+            color: #a1006b;
+            max-width: 900px;
+            margin: 30px auto;
+            line-height: 1.8;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+            border: 3px dashed var(--secondary-color);
+        }
+
+        .countdown-container {
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.9), rgba(255, 182, 193, 0.9));
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 
+                0 20px 40px rgba(255, 105, 180, 0.3),
+                inset 0 5px 15px rgba(255, 255, 255, 0.5);
+            text-align: center;
+            margin: 50px 0;
+            color: white;
+            border: 5px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-title {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px rgba(210, 80, 150, 0.5);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .countdown-item {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            padding: 25px 20px;
+            min-width: 150px;
+            backdrop-filter: blur(5px);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .countdown-number {
+            font-size: 4rem;
+            font-weight: 800;
+            display: block;
+            text-shadow: 3px 3px 0px rgba(210, 80, 150, 0.5);
+        }
+
+        .countdown-label {
+            font-size: 1.8rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .celebration-area {
+            position: relative;
+            min-height: 700px;
+            margin: 50px 0;
+            border-radius: 40px;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #fffafc, #ffe6f2);
+            box-shadow: 0 25px 50px rgba(255, 105, 180, 0.2);
+            padding: 40px;
+            border: 8px solid white;
+        }
+
+        .celebration-text {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .birthday-message {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1.3;
+            text-shadow: 3px 3px 0px rgba(255, 182, 193, 0.5);
+        }
+
+        .birthday-name {
+            color: #d40078;
+            font-weight: 800;
+            text-shadow: 2px 2px 0px rgba(255, 182, 193, 0.7);
+            position: relative;
+            display: inline-block;
+        }
+
+        .birthday-name:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+        }
+
+        .congrats-message {
+            font-size: 2rem;
+            color: #a1006b;
+            max-width: 900px;
+            margin: 30px auto;
+            line-height: 1.8;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3);
+            border: 3px solid var(--accent-color);
+        }
+
+        /* كعكة واقعية */
+        .cake-container {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            margin: 50px auto;
+            z-index: 25;
+        }
+
+        .cake {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 140px;
+            z-index: 2;
+        }
+
+        .cake-base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--cake-color), #f0b4d0);
+            border-radius: 140px 140px 20px 20px;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.1),
+                inset 0 -5px 10px rgba(180, 100, 140, 0.3),
+                inset 0 5px 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .cake-top {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--cake-top), #ffb3e6);
+            border-radius: 160px 160px 30px 30px;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.1),
+                inset 0 -3px 8px rgba(200, 120, 170, 0.3),
+                inset 0 3px 8px rgba(255, 255, 255, 0.7);
+        }
+
+        .cake-decoration {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 20px;
+            background: linear-gradient(90deg, 
+                #ff1493, #ff69b4, #ff85c1, #ff69b4, #ff1493);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cake-cream {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 340px;
+            height: 30px;
+            background: linear-gradient(to bottom, #fff0f5, #ffd1e6);
+            border-radius: 170px 170px 20px 20px;
+        }
+
+        /* الشمعة */
+        .candle {
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 70px;
+            background: linear-gradient(to top, var(--candle-color), #ffcccb, #fff5f5);
+            border-radius: 5px;
+            z-index: 3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .candle:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .candle.flame-on .flame {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .flame {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 25px;
+            height: 50px;
+            background: radial-gradient(circle at center, 
+                #ffff99 0%, 
+                #ffcc00 30%, 
+                #ff9900 60%, 
+                transparent 80%);
+            border-radius: 50% 50% 20% 20%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            filter: blur(5px);
+            z-index: 4;
+            animation: flicker 0.3s infinite alternate;
+        }
+
+        .flame:after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 20px;
+            background: #ffffcc;
+            border-radius: 50%;
+            filter: blur(3px);
+        }
+
+        /* بالونات واقعية */
+        .balloon {
+            position: absolute;
+            border-radius: 50%;
+            bottom: -100px;
+            z-index: 1;
+            opacity: 0;
+            filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.2));
+        }
+
+        .balloon:before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
+        }
+
+        .balloon:after {
+            content: '';
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 15px;
+            background: inherit;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        /* قلوب واقعية */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            z-index: 1;
+            opacity: 0;
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
+        }
+
+        .heart-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+        }
+
+        /* فرقعات واقعية */
+        .confetti {
+            position: absolute;
+            z-index: 1;
+            opacity: 0;
+            transform-origin: center;
+        }
+
+        .confetti::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: inherit;
+        }
+
+        /* ألعاب نارية واقعية */
+        .firework {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            box-shadow: 0 0 15px 5px;
+        }
+
+        .firework-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 70px;
+            color: #a1006b;
+            border-top: 3px dashed var(--secondary-color);
+            font-size: 1.4rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatUpHearts {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: translateX(-50%) scale(1) rotate(-2deg);
+            }
+            100% {
+                transform: translateX(-50%) scale(1.1) rotate(2deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
+        @keyframes wobble {
+            0% { transform: translateX(-50%) rotate(-1deg); }
+            50% { transform: translateX(-50%) rotate(1deg); }
+            100% { transform: translateX(-50%) rotate(-1deg); }
+        }
+
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 5px rgba(255, 20, 147, 0.7)); }
+            100% { filter: drop-shadow(0 0 15px rgba(255, 20, 147, 1)); }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-title {
+                font-size: 3rem;
+            }
+            
+            .title {
+                font-size: 3.5rem;
+            }
+            
+            .birthday-message {
+                font-size: 2.8rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .cake-container {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .intro-title {
+                font-size: 2.5rem;
+            }
+            
+            .title {
+                font-size: 2.8rem;
+            }
+            
+            .birthday-message {
+                font-size: 2.2rem;
+            }
+            
+            .congrats-message, .intro-message {
+                font-size: 1.6rem;
+            }
+            
+            .countdown-item {
+                min-width: 120px;
+            }
+            
+            .countdown-number {
+                font-size: 3.2rem;
+            }
+            
+            .countdown-label {
+                font-size: 1.5rem;
+            }
+            
+            .start-button {
+                font-size: 1.8rem;
+                padding: 20px 50px;
+            }
+            
+            .cake-container {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .intro-title {
+                font-size: 2rem;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .birthday-message {
+                font-size: 1.8rem;
+            }
+            
+            .congrats-message, .intro-message {
+                font-size: 1.3rem;
+                padding: 20px;
+            }
+            
+            .countdown {
+                gap: 15px;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px 10px;
+            }
+            
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-label {
+                font-size: 1.2rem;
+            }
+            
+            .start-button {
+                font-size: 1.5rem;
+                padding: 18px 40px;
+            }
+            
+            .cake-container {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-screen" id="intro-screen">
+        <!-- <h1 class="intro-title">🎂 Happy birthday 🎂</h1> -->
+        <button class="start-button" id="start-btn">
+            <i class="fas fa-gift"></i> click me
+        </button>
+    </div>
+
+    <div class="container" id="main-container">
+        <header>
+            <h1 class="title"> <span class="birthday-girl" id="girl-name">Bata</span> birthday </h1>
+            <!-- <p class="intro-message" id="congrats-message"></p> -->
+        </header>
+
+        <div class="countdown-container" id="countdown-container">
+            <!-- <h2 class="countdown-title"> :</h2> -->
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+
+                    <span class="countdown-label">second</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+
+                    <span class="countdown-label">minute</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+
+                    <span class="countdown-label">hour</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+
+                    <span class="countdown-label">day</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="celebration-area" id="celebration-area">
+            <div class="celebration-text">
+                <h2 class="birthday-message">Happy birthday <br>!<span class="birthday-name" id="celebration-name">Batoot</span></h2>
+                <p class="congrats-message" id="celebration-message" style="display: none;"></p>
+            </div>
+
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="cake-base"></div>
+                    <div class="cake-cream"></div>
+                    <div class="cake-top"></div>
+                    <div class="cake-decoration"></div>
+                </div>
+                <div class="candle flame-on" id="candle">
+                    <div class="flame"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🎀 made by Batoot 🎀</p>
+        </footer>
+    </div>
+
+    <script>
+        const birthdayData = {
+            girlName: "Bata",
+            congratsMessage: " Happy Birthday! May your day be bright and full of happy moments.Wishing you a year full of success, peace, and smiles.You are special and deserve the best always.Have a wonderful birthday 🎂✨ ",
+            countdownDuration: 10 // ثانية - يمكن تغييرها لأي مدة (بالثواني)
+        };
+
+        // العناصر الرئيسية
+        const introScreen = document.getElementById('intro-screen');
+        const startBtn = document.getElementById('start-btn');
+        const mainContainer = document.getElementById('main-container');
+        const countdownContainer = document.getElementById('countdown-container');
+        const countdownDays = document.getElementById('days');
+        const countdownHours = document.getElementById('hours');
+        const countdownMinutes = document.getElementById('minutes');
+        const countdownSeconds = document.getElementById('seconds');
+        const candle = document.getElementById('candle');
+        const celebrationArea = document.getElementById('celebration-area');
+        // const congratsMessageEl = document.getElementById('congrats-message');
+        const celebrationMessageEl = document.getElementById('celebration-message');
+
+        // تهيئة البيانات
+        document.getElementById('girl-name').textContent = birthdayData.girlName;
+        // document.getElementById('celebration-name').textContent = birthdayData.girlName;
+
+        // إخفاء الرسائل في البداية
+        // congratsMessageEl.style.display = 'none';
+        celebrationMessageEl.style.display = 'none';
+        countdownContainer.style.display = 'none';
+        celebrationArea.style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+
+        // متغيرات العد التنازلي
+        let countdownInterval;
+        let countdownTime = birthdayData.countdownDuration;
+        let isCountdownActive = false;
+
+        // بدء الاحتفالية
+        startBtn.addEventListener('click', function() {
+            // إخفاء شاشة البداية
+            introScreen.classList.add('hidden');
+            
+            // إظهار المحتوى الرئيسي بعد تأخير
+            setTimeout(() => {
+                mainContainer.classList.add('active');
+                
+                // إظهار العد التنازلي
+                countdownContainer.style.display = 'block';
+                
+                // بدء العد التنازلي
+                startCountdown();
+                
+                // تشغيل صوت البداية
+                playStartSound();
+                
+                // إضافة قلوب عائمة في الخلفية
+                createBackgroundHearts();
+            }, 1000);
+        });
+
+        // بدء العد التنازلي
+        function startCountdown() {
+            if (isCountdownActive) return;
+            
+            isCountdownActive = true;
+            
+            // بدء العد التنازلي
+            countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+
+        // تحديث العد التنازلي
+        function updateCountdown() {
+            const days = Math.floor(countdownTime / (24 * 60 * 60));
+            const hours = Math.floor((countdownTime % (24 * 60 * 60)) / (60 * 60));
+            const minutes = Math.floor((countdownTime % (60 * 60)) / 60);
+            const seconds = countdownTime % 60;
+            
+            countdownDays.textContent = days.toString().padStart(2, '0');
+            countdownHours.textContent = hours.toString().padStart(2, '0');
+            countdownMinutes.textContent = minutes.toString().padStart(2, '0');
+            countdownSeconds.textContent = seconds.toString().padStart(2, '0');
+            
+            // تأثير اهتزاز عند كل ثانية
+            countdownContainer.style.transform = 'scale(1.03)';
+            setTimeout(() => {
+                countdownContainer.style.transform = 'scale(1)';
+            }, 200);
+            
+            if (countdownTime <= 0) {
+                clearInterval(countdownInterval);
+                startCelebration();
+            } else {
+                countdownTime--;
+            }
+        }
+
+        // بدء الاحتفالية بعد انتهاء العد التنازلي
+        function startCelebration() {
+            countdownContainer.style.display = 'none';
+            
+            // إظهار رسائل التهنئة
+            // congratsMessageEl.style.display = 'block';
+            // congratsMessageEl.textContent = birthdayData.congratsMessage;
+            celebrationMessageEl.style.display = 'block';
+            celebrationMessageEl.textContent = birthdayData.congratsMessage;
+            celebrationArea.style.display = 'block';
+            document.querySelector('footer').style.display = 'block';
+            
+            // تفعيل الاحتفالية
+            createFireworks();
+            setTimeout(createConfetti, 300);
+            setTimeout(createBalloons, 600);
+            setTimeout(createHearts, 900);
+            
+            // إضافة نبضة للشمعة
+            candle.style.animation = 'wobble 2s infinite, glow 1.5s infinite alternate';
+            
+            // تشغيل صوت الاحتفال
+            playCelebrationSound();
+            
+            // تغيير خلفية الصفحة
+            document.body.style.background = 'linear-gradient(135deg, #ffe6f2 0%, #ffcce6 100%)';
+        }
+
+        // إنشاء قلوب عائمة في الخلفية
+        function createBackgroundHearts() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.style.width = `${30 + Math.random() * 40}px`;
+                    heart.style.height = heart.style.width;
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.color = getRandomHeartColor();
+                    
+                    // استخدام SVG للقلوب الواقعية
+                    heart.innerHTML = `
+                        <svg class="heart-svg" viewBox="0 0 32 29.6">
+                            <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" fill="currentColor"/>
+                        </svg>
+                    `;
+                    
+                    document.body.appendChild(heart);
+                    
+                    // تحريك القلب
+                    heart.style.opacity = '0.7';
+                    const duration = 15 + Math.random() * 20;
+                    heart.style.animation = `floatUpHearts ${duration}s linear forwards`;
+                    
+                    // إزالة القلب بعد انتهاء الحركة
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, duration * 1000);
+                }, i * 1000);
+            }
+        }
+
+        // إنشاء الألعاب النارية
+        function createFireworks() {
+            const colors = ['#ff1493', '#ff69b4', '#ff85c1', '#ffb6c1', '#ffd1dc'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    
+                    const x = Math.random() * 85 + 7.5;
+                    const y = Math.random() * 50 + 25;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    firework.style.left = `${x}%`;
+                    firework.style.top = `${y}%`;
+                    firework.style.backgroundColor = color;
+                    firework.style.boxShadow = `0 0 15px 5px ${color}`;
+                    
+                    celebrationArea.appendChild(firework);
+                    
+                    // تفجير الألعاب النارية
+                    setTimeout(() => {
+                        firework.style.opacity = '1';
+                        firework.style.transition = 'all 0.7s ease';
+                        firework.style.transform = 'scale(2)';
+                        
+                        // إنشاء جزيئات الانفجار
+                        createFireworkParticles(x, y, color);
+                        
+                        // إزالة النار الصناعية بعد الانفجار
+                        setTimeout(() => {
+                            firework.style.opacity = '0';
+                            setTimeout(() => {
+                                if (firework.parentNode) {
+                                    firework.parentNode.removeChild(firework);
+                                }
+                            }, 700);
+                        }, 700);
+                    }, 100);
+                }, i * 400);
+            }
+        }
+
+        // إنشاء جزيئات الألعاب النارية
+        function createFireworkParticles(x, y, color) {
+            const particleCount = 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'firework-particle';
+                    
+                    particle.style.left = `${x}%`;
+                    particle.style.top = `${y}%`;
+                    particle.style.backgroundColor = color;
+                    
+                    celebrationArea.appendChild(particle);
+                    
+                    // حركة الجزيئات
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = 3 + Math.random() * 4;
+                    const vx = Math.cos(angle) * speed;
+                    const vy = Math.sin(angle) * speed;
+                    
+                    let particleX = x;
+                    let particleY = y;
+                    
+                    const particleInterval = setInterval(() => {
+                        particleX += vx;
+                        particleY += vy;
+                        
+                        particle.style.left = `${particleX}%`;
+                        particle.style.top = `${particleY}%`;
+                        particle.style.opacity = '1';
+                        
+                        // توهج الجزيئات
+                        const glowSize = 5 + Math.random() * 10;
+                        particle.style.boxShadow = `0 0 ${glowSize}px ${color}`;
+                        
+                        // توقف الجزيئات بعد مسافة معينة
+                        if (particleX < 0 || particleX > 100 || particleY < 0 || particleY > 100) {
+                            clearInterval(particleInterval);
+                            particle.style.opacity = '0';
+                            setTimeout(() => {
+                                if (particle.parentNode) {
+                                    particle.parentNode.removeChild(particle);
+                                }
+                            }, 500);
+                        }
+                    }, 30);
+                }, i * 10);
+            }
+        }
+
+        // إنشاء الفرقعات
+        function createConfetti() {
+            const colors = ['#ff1493', '#ff69b4', '#ff85c1', '#ffb6c1', '#ffd1dc', '#ffccf9', '#ffb3e6'];
+            const shapes = ['circle', 'rectangle', 'star'];
+            
+            for (let i = 0; i < 200; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const size = 8 + Math.random() * 20;
+                    const x = Math.random() * 100;
+                    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                    
+                    confetti.style.left = `${x}%`;
+                    confetti.style.backgroundColor = color;
+                    confetti.style.width = `${size}px`;
+                    confetti.style.height = `${size}px`;
+                    
+                    // أشكال مختلفة للفرقعات
+                    if (shape === 'circle') {
+                        confetti.style.borderRadius = '50%';
+                    } else if (shape === 'rectangle') {
+                        confetti.style.borderRadius = '3px';
+                        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    } else if (shape === 'star') {
+                        confetti.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
+                    }
+                    
+                    celebrationArea.appendChild(confetti);
+                    
+                    // تحريك الفرقعات
+                    confetti.style.opacity = '1';
+                    const duration = 4 + Math.random() * 6;
+                    confetti.style.animation = `confettiFall ${duration}s linear forwards`;
+                    
+                    // إزالة الفرقعات بعد الهبوط
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.parentNode.removeChild(confetti);
+                        }
+                    }, duration * 1000);
+                }, i * 20);
+            }
+        }
+
+        // إنشاء البالونات
+        function createBalloons() {
+            const colors = ['#ff1493', '#ff69b4', '#ff85c1', '#ffb6c1', '#ffd1dc', '#ffccf9'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const x = Math.random() * 85 + 7.5;
+                    const size = 50 + Math.random() * 70;
+                    const type = Math.random() > 0.5 ? 'circle' : 'oval';
+                    
+                    balloon.style.left = `${x}%`;
+                    balloon.style.backgroundColor = color;
+                    
+                    if (type === 'circle') {
+                        balloon.style.width = `${size}px`;
+                        balloon.style.height = `${size}px`;
+                        balloon.style.borderRadius = '50%';
+                    } else {
+                        balloon.style.width = `${size}px`;
+                        balloon.style.height = `${size * 1.3}px`;
+                        balloon.style.borderRadius = `${size}px / ${size * 1.3}px`;
+                    }
+                    
+                    celebrationArea.appendChild(balloon);
+                    
+                    // تحريك البالونات
+                    balloon.style.opacity = '1';
+                    const duration = 12 + Math.random() * 15;
+                    const rotation = Math.random() > 0.5 ? 15 : -15;
+                    balloon.style.animation = `floatUp ${duration}s linear forwards`;
+                    balloon.style.setProperty('--rotation', `${rotation}deg`);
+                    
+                    // اهتزاز البالونات أثناء الصعود
+                    setInterval(() => {
+                        if (balloon.parentNode) {
+                            const currentLeft = parseFloat(balloon.style.left);
+                            balloon.style.left = `${currentLeft + (Math.random() - 0.5) * 0.5}%`;
+                        }
+                    }, 300);
+                    
+                    // إزالة البالونات بعد الصعود
+                    setTimeout(() => {
+                        if (balloon.parentNode) {
+                            balloon.parentNode.removeChild(balloon);
+                        }
+                    }, duration * 1000);
+                }, i * 600);
+            }
+        }
+
+        // إنشاء القلوب
+        function createHearts() {
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    const size = 25 + Math.random() * 50;
+                    heart.style.width = `${size}px`;
+                    heart.style.height = `${size}px`;
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.color = getRandomHeartColor();
+                    
+                    // استخدام SVG للقلوب الواقعية
+                    heart.innerHTML = `
+                        <svg class="heart-svg" viewBox="0 0 32 29.6">
+                            <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" fill="currentColor"/>
+                        </svg>
+                    `;
+                    
+                    celebrationArea.appendChild(heart);
+                    
+                    // تحريك القلوب
+                    heart.style.opacity = '1';
+                    const duration = 10 + Math.random() * 15;
+                    heart.style.animation = `floatUpHearts ${duration}s linear forwards`;
+                    
+                    // اهتزاز القلوب أثناء الصعود
+                    setInterval(() => {
+                        if (heart.parentNode) {
+                            const currentLeft = parseFloat(heart.style.left);
+                            heart.style.left = `${currentLeft + (Math.random() - 0.5) * 0.3}%`;
+                        }
+                    }, 400);
+                    
+                    // إزالة القلوب بعد الصعود
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, duration * 1000);
+                }, i * 350);
+            }
+        }
+
+        // تفاعل الشمعة
+        candle.addEventListener('click', function() {
+            if (candle.classList.contains('flame-on')) {
+                candle.classList.remove('flame-on');
+                candle.style.animation = 'none';
+                
+                // إضافة دخان بعد إطفاء الشمعة
+                createSmoke();
+                
+                // تشغيل صوت إطفاء الشمعة
+                playCandleSound();
+                
+                // إضافة نجوم صغيرة عند إطفاء الشمعة
+                createStars();
+            } else {
+                candle.classList.add('flame-on');
+                candle.style.animation = 'wobble 2s infinite, glow 1.5s infinite alternate';
+            }
+        });
+
+        // إنشاء دخان بعد إطفاء الشمعة
+        function createSmoke() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const smoke = document.createElement('div');
+                    smoke.style.position = 'absolute';
+                    smoke.style.width = `${20 + i * 5}px`;
+                    smoke.style.height = smoke.style.width;
+                    smoke.style.backgroundColor = '#888';
+                    smoke.style.borderRadius = '50%';
+                    smoke.style.left = '50%';
+                    smoke.style.top = '50%';
+                    smoke.style.transform = 'translate(-50%, -50%)';
+                    smoke.style.opacity = '0.6';
+                    smoke.style.filter = 'blur(8px)';
+                    smoke.style.zIndex = '5';
+                    smoke.style.mixBlendMode = 'multiply';
+                    
+                    candle.appendChild(smoke);
+                    
+                    // تحريك الدخان
+                    const smokeInterval = setInterval(() => {
+                        const currentTop = parseFloat(smoke.style.top);
+                        const currentLeft = parseFloat(smoke.style.left);
+                        const currentOpacity = parseFloat(smoke.style.opacity);
+                        const currentWidth = parseFloat(smoke.style.width);
+                        
+                        smoke.style.top = `${currentTop - 0.8}%`;
+                        smoke.style.left = `${currentLeft + (Math.random() - 0.5) * 2}%`;
+                        smoke.style.opacity = `${currentOpacity - 0.02}`;
+                        smoke.style.width = `${currentWidth + 1}px`;
+                        smoke.style.height = smoke.style.width;
+                        
+                        if (currentOpacity <= 0) {
+                            clearInterval(smokeInterval);
+                            smoke.remove();
+                        }
+                    }, 60);
+                }, i * 250);
+            }
+        }
+
+        // إنشاء نجوم عند إطفاء الشمعة
+        function createStars() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const star = document.createElement('div');
+                    star.style.position = 'absolute';
+                    star.style.width = '10px';
+                    star.style.height = '10px';
+                    star.style.backgroundColor = '#ffff99';
+                    star.style.borderRadius = '50%';
+                    star.style.left = '50%';
+                    star.style.top = '50%';
+                    star.style.transform = 'translate(-50%, -50%)';
+                    star.style.opacity = '0.9';
+                    star.style.filter = 'blur(1px)';
+                    star.style.zIndex = '6';
+                    star.style.boxShadow = '0 0 10px #ffff99';
+                    
+                    candle.appendChild(star);
+                    
+                    // تحريك النجوم
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 30 + Math.random() * 50;
+                    const duration = 500 + Math.random() * 1000;
+                    
+                    star.animate([
+                        { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.9 },
+                        { 
+                            transform: `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)) scale(0)`, 
+                            opacity: 0 
+                        }
+                    ], {
+                        duration: duration,
+                        easing: 'ease-out'
+                    });
+                    
+                    // إزالة النجوم بعد الانتهاء
+                    setTimeout(() => {
+                        star.remove();
+                    }, duration);
+                }, i * 50);
+            }
+        }
+
+        // الحصول على لون عشوائي للقلوب
+        function getRandomHeartColor() {
+            const colors = [
+                '#ff1493', '#ff69b4', '#ff85c1', 
+                '#ffb6c1', '#ffd1dc', '#ffccf9',
+                '#ffb3e6', '#ff99cc', '#ff80bf'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // تشغيل الأصوات
+        function playStartSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // نغمة سعيدة
+                oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+                oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
+                oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
+                oscillator.frequency.setValueAtTime(1046.50, audioContext.currentTime + 0.3); // C6
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.6);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.6);
+            } catch (e) {
+                console.log("تعذر تشغيل الصوت: ", e);
+            }
+        }
+
+        function playCelebrationSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // تشغيل عدة نغمات للاحتفال
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        const notes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
+                        const note = notes[Math.floor(Math.random() * notes.length)];
+                        
+                        oscillator.frequency.setValueAtTime(note, audioContext.currentTime);
+                        
+                        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.3);
+                    }, i * 150);
+                }
+            } catch (e) {
+                console.log("تعذر تشغيل صوت الاحتفال: ", e);
+            }
+        }
+
+        function playCandleSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(80, audioContext.currentTime + 0.4);
+                
+                gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.4);
+            } catch (e) {
+                console.log("تعذر تشغيل صوت الشمعة: ", e);
+            }
+        }
+
+        // التأكد من أن جميع العناصر مرئية عند التمرير
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.countdown-container, .celebration-area');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = "1";
+                    element.style.transform = "translateY(0)";
+                }
+            });
+        });
+
+        // تهيئة الصفحة عند التحميل
+        window.addEventListener('load', function() {
+            // تحميل الصفحة بسلاسة
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
